@@ -1,0 +1,6 @@
+2015.07.02, v1.0.1
+
+feature:
+- (jaguar) rm this._files
+- (package) unpack -> extract
+
