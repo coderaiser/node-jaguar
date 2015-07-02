@@ -27,7 +27,7 @@
     "gzip",
     "pack",
     "tar",
-    "unpack"
+    "extract"
   ],
   "author": "coderaiser <mnemonic.enemy@gmail.com> (http://coderaiser.github.io/)",
   "license": "MIT",
