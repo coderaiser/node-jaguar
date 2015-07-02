@@ -1,3 +1,9 @@
+2015.07.02, v1.0.2
+
+fix:
+- (jaguar) _unpack -> _extract
+
+
 2015.07.02, v1.0.1
 
 feature:
