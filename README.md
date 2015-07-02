@@ -37,7 +37,7 @@ npm i jaguar --save
 var jaguar          = require('jaguar'),
     path            = require('path'),
     cwd             = process.cwd(),
-    name            = 'pipe.tar.gz
+    name            = 'pipe.tar.gz',
     from            = cwd + '/pipe-io',
     to              = path.join(cwd, name);
     
