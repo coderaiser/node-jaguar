@@ -11,7 +11,7 @@
         args        = require('minimist')(argv.slice(2), {
             string: [
                 'pack',
-                'unpack',
+                'extract',
             ],
             alias: {
                 v: 'version',
@@ -47,7 +47,7 @@
         help();
     
     function main(operation, file) {
-        var packer,
+        var packer, wasError,
             from, to,
             cwd     = process.cwd();
             
@@ -68,6 +68,7 @@
         }
         
         packer.on('error', function(error) {
+            wasError = true;
             console.error(error.message);
         });
         
@@ -76,7 +77,7 @@
         });
         
         packer.on('end', function() {
-            process.stdout.write('\n');
+            !wasError && process.stdout.write('\n');
         });
     }
     
