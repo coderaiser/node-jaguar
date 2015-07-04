@@ -8,7 +8,6 @@
   ],
   "dependencies": {
     "findit": "~2.0.0",
-    "fstream": "~1.0.3",
     "glob": "~5.0.12",
     "minimist": "~1.1.1",
     "pipe-io": "~1.1.3",
@@ -16,17 +15,16 @@
     "tar-stream": "~1.2.1"
   },
   "devDependencies": {},
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/coderaiser/node-jaguar"
   },
   "keywords": [
+    "extract",
     "gzip",
     "pack",
-    "tar",
-    "extract"
+    "tar"
   ],
   "author": "coderaiser <mnemonic.enemy@gmail.com> (http://coderaiser.github.io/)",
   "license": "MIT",
