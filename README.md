@@ -33,8 +33,15 @@ npm i jaguar --save
 
 ### How to use?
 
+#### pack(from, to, names)
+
+`from`  - **string** directory that would be packed
+`to`    - **string** or **stream**, name of archive
+`names` - **array** of names in directory `from` that would be packed.
+
 ```js
-var jaguar          = require('jaguar'),
+var pack,
+    jaguar          = require('jaguar'),
     path            = require('path'),
     cwd             = process.cwd(),
     name            = 'pipe.tar.gz',
@@ -47,22 +54,56 @@ pack = jaguar.pack(from, to, [
     'package.json'
 ]);
 
-cp.on('file', function(name) {
+pack.on('file', function(name) {
     console.log(name);
 });
 
-cp.on('progress', function(percent) {
+pack.on('progress', function(percent) {
     console.log(percent + '%');
 });
 
-cp.on('error', function(error) {
+pack.on('error', function(error) {
     console.error(error);
 });
 
-cp.on('end', function() {
+pack.on('end', function() {
     console.log('done');
 });
 ```
+
+#### extract(from, to)
+
+`from` - path to **.tar.gz** archive
+`to` - path to directory where files would be stored.
+
+```js
+var extract,
+    jaguar          = require('jaguar'),
+    path            = require('path'),
+    cwd             = process.cwd(),
+    name            = 'pipe.tar.gz',
+    to              = cwd + '/pipe-io',
+    from            = path.join(cwd, name);
+    
+extract = jaguar.extract(from, to);
+
+extract.on('file', function(name) {
+    console.log(name);
+});
+
+extract.on('progress', function(percent) {
+    console.log(percent + '%');
+});
+
+extract.on('error', function(error) {
+    console.error(error);
+});
+
+extract.on('end', function() {
+    console.log('done');
+});
+```
+
 
 In case of starting example output should be similar to:
 
