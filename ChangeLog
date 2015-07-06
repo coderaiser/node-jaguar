@@ -1,3 +1,9 @@
+2015.07.06, v1.0.5
+
+feature:
+- (jaguar) pack: add ability to use streams instead of string
+
+
 2015.07.04, v1.0.4
 
 feature:
