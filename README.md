@@ -73,8 +73,8 @@ pack.on('end', function() {
 
 #### extract(from, to)
 
-`from` - path to **.tar.gz** archive
-`to` - path to directory where files would be stored.
+- `from` - path to **.tar.gz** archive
+- `to` - path to directory where files would be stored.
 
 ```js
 var extract,
