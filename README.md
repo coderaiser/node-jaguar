@@ -35,9 +35,9 @@ npm i jaguar --save
 
 #### pack(from, to, names)
 
-`from`  - **string** directory that would be packed
-`to`    - **string** or **stream**, name of archive
-`names` - **array** of names in directory `from` that would be packed.
+- `from`  - **string** directory that would be packed
+- `to`    - **string** or **stream**, name of archive
+- `names` - **array** of names in directory `from` that would be packed.
 
 ```js
 var pack,
