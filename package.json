@@ -9,7 +9,7 @@
   "dependencies": {
     "findit": "~2.0.0",
     "glob": "~5.0.12",
-    "minimist": "~1.1.1",
+    "minimist": "~1.2.0",
     "pipe-io": "~1.2.0",
     "tar-fs": "~1.7.0",
     "tar-stream": "~1.2.1"
