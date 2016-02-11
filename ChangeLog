@@ -1,3 +1,10 @@
+2016.02.11, v1.1.7
+
+feature:
+- (package) tar-fs v1.10.0
+- (package) glob v7.0.0
+
+
 2015.12.21, v1.1.6
 
 feature:
