@@ -22,7 +22,7 @@ Options:
 
 ## Local
 
-`Jaguar` could be used localy. It will emit event on every jaguared/extracted file.
+`Jaguar` could be used localy. It will emit event on every packed/extracted file.
 Good for making progress bars.
 
 ### Install
