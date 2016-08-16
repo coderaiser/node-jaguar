@@ -17,7 +17,7 @@
                 v: 'version',
                 h: 'help',
                 p: 'pack',
-                u: 'extract'
+                x: 'extract'
             },
             unknown: function(cmd) {
                 var name = info().name;
@@ -63,7 +63,7 @@
         
         case 'extract':
             to      = cwd;
-            packer  = jaguar.pack(file, to);
+            packer  = jaguar.extract(file, to);
             break;
         }
         
