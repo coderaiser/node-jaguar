@@ -39,7 +39,7 @@ else if (args.pack)
         main('pack', name);
     });
 else if (args.extract)
-   getName(args.extract, function(name) {
+    getName(args.extract, function(name) {
         main('extract', name);
     });
 else
@@ -47,12 +47,11 @@ else
 
 function main(operation, file) {
     var packer,
-        from, to,
+        to,
         cwd     = process.cwd();
         
     switch(operation) {
     case 'pack':
-        from    = cwd;
         to      = path.join(cwd, file + '.tar.gz');
         packer  = jaguar.pack(cwd, to, [
             file
