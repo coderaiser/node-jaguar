@@ -17,7 +17,10 @@
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-preset-es2015": "^6.18.0",
-    "eslint": "^3.9.0"
+    "eslint": "^3.9.0",
+    "nodemon": "^1.11.0",
+    "nyc": "^8.3.2",
+    "tape": "^4.6.2"
   },
   "babel": {
     "presets": [
@@ -35,7 +38,12 @@
     "lint:eslint": "eslint lib",
     "lint:eslint-bin": "eslint --rule 'no-console:0' bin",
     "lint": "redrun lint:*",
-    "jscs-fix": "npm run jscs --fix"
+    "jscs-fix": "npm run jscs --fix",
+    "test": "tape 'test/**/*.js'",
+    "coverage": "nyc npm test",
+    "watcher": "nodemon -w test -w lib --exec",
+    "watch:test": "npm run watcher -- npm test",
+    "watch:coverage": "npm run watcher -- npm run coverage"
   },
   "repository": {
     "type": "git",
