@@ -57,6 +57,10 @@ pack.on('file', (name) => {
     console.log(name);
 });
 
+pack.on('start', () => {
+    console.log('start of packing');
+});
+
 pack.on('progress', (percent) => {
     console.log(percent + '%');
 });

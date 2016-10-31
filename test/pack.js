@@ -131,9 +131,33 @@ test('jaguar: pack: abort: fast', (t) => {
 
 test('jaguar: pack: abort: unlink', (t) => {
     const to = join(tmpdir(), `${Math.random()}.tar.gz`);
-    const dir = join(__dirname, '..');
+    const dir = join(__dirname, 'fixture');
     const packer = pack(dir, to, [
-        '.git'
+        'jaguar.txt'
+    ]);
+    
+    const unlink = fs.unlink;
+    
+    fs.unlink = (name, fn) => {
+        fn();
+    };
+    
+    packer.on('start', () => {
+        packer.abort();
+    });
+    
+    packer.on('end', () => {
+        fs.unlink = unlink;
+        t.pass('should emit end');
+        t.end();
+    });
+});
+
+test('jaguar: pack: unlink', (t) => {
+    const to = join(tmpdir(), `${Math.random()}.tar.gz`);
+    const dir = join(__dirname, 'fixture');
+    const packer = pack(dir, to, [
+        'jaguar.txt'
     ]);
     
     const unlink = fs.unlink;
@@ -151,7 +175,7 @@ test('jaguar: pack: abort: unlink', (t) => {
     packer._unlink(to);
 });
 
-test('jaguar: pack: abort: unlink: error', (t) => {
+test('jaguar: pack: unlink: error', (t) => {
     const to = join(tmpdir(), `${Math.random()}.tar.gz`);
     const dir = join(__dirname, '..');
     const packer = pack(dir, to, [
