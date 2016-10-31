@@ -1,6 +1,7 @@
 node_modules
 npm-debug.log
 legacy
+coverage
 .nyc_output
 *.swp
 
