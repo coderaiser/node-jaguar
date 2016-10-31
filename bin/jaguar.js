@@ -2,84 +2,79 @@
 
 'use strict';
 
-var jaguar      = require('..'),
-    path        = require('path'),
-    glob        = require('glob'),
-    argv        = process.argv,
-    
-    args        = require('minimist')(argv.slice(2), {
-        string: [
-            'pack',
-            'extract',
-        ],
-        alias: {
-            v: 'version',
-            h: 'help',
-            p: 'pack',
-            x: 'extract'
-        },
-        unknown: function(cmd) {
-            var name = info().name;
-            
-            console.error(
-                '\'%s\' is not a ' +  name + ' option. ' +
-                'See \'' + name + ' --help\'.', cmd
-            );
-            
-            process.exit(-1);
-        }
-    });
-    
+const jaguar = require('..');
+const path = require('path');
+const glob = require('glob');
+const argv = process.argv;
+
+const args = require('minimist')(argv.slice(2), {
+    string: [
+        'pack',
+        'extract',
+    ],
+    alias: {
+        v: 'version',
+        h: 'help',
+        p: 'pack',
+        x: 'extract'
+    },
+    unknown: (cmd) => {
+        const name = info().name;
+        
+        console.error(
+            `'%s' is not a ${name} option. See '${name} --help'.`, cmd
+        );
+        
+        process.exit(-1);
+    }
+});
+
 if (args.version)
     version();
 else if (args.help)
     help();
 else if (args.pack)
-    getName(args.pack, function(name) {
+    getName(args.pack, name => {
         main('pack', name);
     });
 else if (args.extract)
-    getName(args.extract, function(name) {
+    getName(args.extract, name => {
         main('extract', name);
     });
 else
     help();
 
 function main(operation, file) {
-    var packer,
-        to,
-        cwd     = process.cwd();
-        
-    switch(operation) {
-    case 'pack':
-        to      = path.join(cwd, file + '.tar.gz');
-        packer  = jaguar.pack(cwd, to, [
-            file
-        ]);
-        
-        break;
+    const packer = getPacker(operation, file);
     
-    case 'extract':
-        to      = cwd;
-        packer  = jaguar.extract(file, to);
-        break;
-    }
-    
-    packer.on('error', function(error) {
+    packer.on('error', error => {
         console.error(error.message);
     });
     
-    packer.on('progress', function(percent) {
-        process.stdout.write('\r' + percent + '%');
+    packer.on('progress', percent => {
+        process.stdout.write(`\r${percent}%`);
     });
     
-    packer.on('end', function() {
+    packer.on('end', () => {
         process.stdout.write('\n');
     });
 }
 
+function getPacker(operation, file) {
+    const cwd = process.cwd();
+    
+    if (operation === 'extract')
+        return jaguar.extract(file, cwd);
+    
+    const to = path.join(cwd, `${file}.tar.gz`);
+    
+    return jaguar.pack(cwd, to, [
+        file
+    ]);
+}
+
 function getName(str, fn) {
-    glob(str, function(error, files) {
+    glob(str, (error, files) => {
         if (error)
             console.error(error.message);
         else if (!files.length)
@@ -90,7 +85,7 @@ function getName(str, fn) {
 }
 
 function version() {
-    console.log('v' + info().version);
+    console.log(`v${info().version}`);
 }
 
 function info() {
@@ -98,14 +93,14 @@ function info() {
 }
 
 function help() {
-    var bin         = require('../json/bin'),
-        usage       = 'Usage: ' + info().name + ' [path]';
-        
+    const bin = require('../json/bin');
+    const usage = `Usage: ${info().name} [path]`;
+    
     console.log(usage);
     console.log('Options:');
     
-    Object.keys(bin).forEach(function(name) {
-        var line = '  ' + name + ' ' + bin[name];
+    Object.keys(bin).forEach(name => {
+        const line = `  ${name} ${bin[name]}`;
         console.log(line);
     });
 }

@@ -40,33 +40,32 @@ npm i jaguar --save
 - `names` - **array** of names in directory `from` that would be packed.
 
 ```js
-var pack,
-    jaguar          = require('jaguar'),
-    path            = require('path'),
-    cwd             = process.cwd(),
-    name            = 'pipe.tar.gz',
-    from            = cwd + '/pipe-io',
-    to              = path.join(cwd, name);
+const jaguar = require('jaguar');
+const path = require('path');
+const cwd = process.cwd();
+const name = 'pipe.tar.gz';
+const from = cwd + '/pipe-io';
+const to = path.join(cwd, name);
     
-pack = jaguar.pack(from, to, [
+const pack = jaguar.pack(from, to, [
     'LICENSE',
     'README.md',
     'package.json'
 ]);
 
-pack.on('file', function(name) {
+pack.on('file', (name) => {
     console.log(name);
 });
 
-pack.on('progress', function(percent) {
+pack.on('progress', (percent) => {
     console.log(percent + '%');
 });
 
-pack.on('error', function(error) {
+pack.on('error', (error) => {
     console.error(error);
 });
 
-pack.on('end', function() {
+pack.on('end', () => {
     console.log('done');
 });
 ```
@@ -77,29 +76,28 @@ pack.on('end', function() {
 - `to` - path to directory where files would be stored.
 
 ```js
-var extract,
-    jaguar          = require('jaguar'),
-    path            = require('path'),
-    cwd             = process.cwd(),
-    name            = 'pipe.tar.gz',
-    to              = cwd + '/pipe-io',
-    from            = path.join(cwd, name);
-    
-extract = jaguar.extract(from, to);
+const jaguar = require('jaguar');
+const path = require('path');
+const cwd = process.cwd();
+const name = 'pipe.tar.gz';
+const to = cwd + '/pipe-io';
+const from = path.join(cwd, name);
 
-extract.on('file', function(name) {
+const extract = jaguar.extract(from, to);
+
+extract.on('file', (name) => {
     console.log(name);
 });
 
-extract.on('progress', function(percent) {
+extract.on('progress', (percent) => {
     console.log(percent + '%');
 });
 
-extract.on('error', function(error) {
+extract.on('error', (error) => {
     console.error(error);
 });
 
-extract.on('end', function() {
+extract.on('end', () => {
     console.log('done');
 });
 ```
@@ -112,6 +110,14 @@ In case of starting example output should be similar to:
 67%
 100%
 done
+```
+
+## Environments
+
+In old `node.js` environments that not fully supports `es2015`, `jaguar` could be used with:
+
+```js
+var jaguar = require('jaguar/legacy');
 ```
 
 ## License
