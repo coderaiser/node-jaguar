@@ -47,8 +47,6 @@ test('jaguar: extract', (t) => {
         const pathUnpacked = join(to, 'jaguar.txt');
         const pathFixture= join(fixture, 'jaguar.txt');
         
-        console.log(pathUnpacked);
-        
         const fileUnpacked = readFileSync(pathUnpacked);
         const fileFixture = readFileSync(pathFixture);
         
