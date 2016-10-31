@@ -1,3 +1,11 @@
+2016.10.31, v2.1.0
+
+feature:
+- (jaguar) add start event
+- (gitignore) add coverage
+- (package) add redrun
+
+
 2016.10.31, v2.0.0
 
 feature:
