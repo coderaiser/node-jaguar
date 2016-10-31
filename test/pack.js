@@ -80,7 +80,7 @@ test('jaguar: pack', (t) => {
         const fileFrom  = readFileSync(from);
         
         unlinkSync(to);
-        t.deepEqual(fileTo, fileFrom, 'should pack file');
+        t.ok(fileFrom.equals(fileTo), 'should pack file');
         t.end();
     });
 });
