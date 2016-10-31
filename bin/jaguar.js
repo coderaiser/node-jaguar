@@ -46,7 +46,7 @@ else
     help();
 
 function main(operation, file) {
-    var packer, wasError,
+    var packer,
         from, to,
         cwd     = process.cwd();
         
@@ -67,7 +67,6 @@ function main(operation, file) {
     }
     
     packer.on('error', function(error) {
-        wasError = true;
         console.error(error.message);
     });
     
@@ -76,7 +75,7 @@ function main(operation, file) {
     });
     
     packer.on('end', function() {
-        !wasError && process.stdout.write('\n');
+        process.stdout.write('\n');
     });
 }
 
