@@ -7,12 +7,12 @@
     "bin/jaguar.js"
   ],
   "dependencies": {
-    "findit": "~2.0.0",
+    "findit": "^2.0.0",
     "glob": "^7.1.0",
-    "minimist": "~1.2.0",
-    "pipe-io": "~1.2.0",
+    "minimist": "^1.2.0",
+    "pipe-io": "^1.2.0",
     "tar-fs": "^1.13.0",
-    "tar-stream": "~1.5.1"
+    "tar-stream": "^1.5.1"
   },
   "devDependencies": {},
   "scripts": {},
