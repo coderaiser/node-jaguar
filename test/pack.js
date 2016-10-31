@@ -138,14 +138,17 @@ test('jaguar: pack: abort: unlink', (t) => {
     
     const unlink = fs.unlink;
     
-    setTimeout(() => {
-        packer.abort();
-    }, 700);
+    fs.unlink = (name, fn) => {
+        fn();
+    };
     
-    packer.on('end', () => {
-        t.notOk(existsSync(to), 'should remove archive');
+    packer.once('end', () => {
+        fs.unlink = unlink;
+        t.pass('should emit end');
         t.end();
     });
+    
+    packer._unlink(to);
 });
 
 test('jaguar: pack: abort: unlink: error', (t) => {
@@ -161,14 +164,12 @@ test('jaguar: pack: abort: unlink: error', (t) => {
         fn(Error('Can not remove'));
     }
     
-    setTimeout(() => {
-        packer.abort();
-    }, 100);
-    
     packer.on('error', (e) => {
         fs.unlink = unlink;
         t.ok(e.message, 'Can not remove', 'should emit error');
         t.end();
     });
+    
+    packer._unlink(to);
 });
 
