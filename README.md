@@ -1,4 +1,4 @@
-# Jaguar [![License][LicenseIMGURL]][LicenseURL] [![NPM version][NPMIMGURL]][NPMURL] [![Dependency Status][DependencyStatusIMGURL]][DependencyStatusURL] [![Build Status][BuildStatusIMGURL]][BuildStatusURL]
+# Jaguar [![License][LicenseIMGURL]][LicenseURL] [![NPM version][NPMIMGURL]][NPMURL] [![Dependency Status][DependencyStatusIMGURL]][DependencyStatusURL] [![Build Status][BuildStatusIMGURL]][BuildStatusURL] [![Coverage Status][CoverageIMGURL]][CoverageURL]
 
 Pack and extract .tar.gz archives with emitter. 
 
@@ -132,4 +132,7 @@ MIT
 [BuildStatusURL]:           https://travis-ci.org/coderaiser/node-jaguar  "Build Status"
 [DependencyStatusURL]:      https://gemnasium.com/coderaiser/node-jaguar "Dependency Status"
 [LicenseURL]:               https://tldrlegal.com/license/mit-license "MIT License"
+
+[CoverageURL]:              https://coveralls.io/github/coderaiser/node-jaguar?branch=master
+[CoverageIMGURL]:           https://coveralls.io/repos/coderaiser/node-jaguar/badge.svg?branch=master&service=github
 
