@@ -126,7 +126,7 @@ var jaguar = require('jaguar/legacy');
 ```
 ## Related
 
-- [OneZip](https://github.com/coderaser/node-onezip "OneZip") - Pack and extract zip archives with emitter.
+- [OneZip](https://github.com/coderaiser/node-onezip "OneZip") - Pack and extract zip archives with emitter.
 
 ## License
 
