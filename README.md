@@ -1,6 +1,6 @@
 # Jaguar [![License][LicenseIMGURL]][LicenseURL] [![NPM version][NPMIMGURL]][NPMURL] [![Dependency Status][DependencyStatusIMGURL]][DependencyStatusURL] [![Build Status][BuildStatusIMGURL]][BuildStatusURL] [![Coverage Status][CoverageIMGURL]][CoverageURL]
 
-Pack and extract .tar.gz archives with emitter. 
+Pack and extract .tar.gz archives with emitter.
 
 ## Global
 
@@ -9,6 +9,7 @@ Pack and extract .tar.gz archives with emitter.
 ```
 npm i jaguar -g
 ```
+
 And used this way:
 
 ```
@@ -46,7 +47,7 @@ const cwd = process.cwd();
 const name = 'pipe.tar.gz';
 const from = cwd + '/pipe-io';
 const to = path.join(cwd, name);
-    
+
 const pack = jaguar.pack(from, to, [
     'LICENSE',
     'README.md',
