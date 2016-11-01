@@ -124,6 +124,9 @@ In old `node.js` environments that not fully supports `es2015`, `jaguar` could b
 ```js
 var jaguar = require('jaguar/legacy');
 ```
+## Related
+
+- [OneZip](https://github.com/coderaser/node-onezip "OneZip") - Pack and extract zip archives with emitter.
 
 ## License
 
