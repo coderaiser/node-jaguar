@@ -52,6 +52,10 @@ test('jaguar: pack: error: read', (t) => {
         t.equal(e.message,  expect, 'should emit error when file not found');
         t.end();
     });
+    
+    packer.on('end', () => {
+        t.fail('should not emit end event when error');
+    });
 });
 
 test('jaguar: pack: error: write', (t) => {
