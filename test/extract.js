@@ -58,3 +58,17 @@ test('jaguar: extract', (t) => {
     });
 });
 
+test('jaguar: extract: gz: invalid tar header', (t) => {
+    const to = mkdtempSync(tmpdir() + sep);
+    const fixture = join(__dirname, 'fixture');
+    const from = join(fixture, 'awk.1.gz');
+    const extracter = extract(from, to);
+    
+    extracter.on('error', (e) => {
+        const msg = 'Invalid tar header. Maybe the tar is corrupted or it needs to be gunzipped?';
+        t.equal(e.message, msg, 'should emit error');
+        t.end();
+        rmdirSync(to);
+    });
+});
+
