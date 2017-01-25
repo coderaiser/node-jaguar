@@ -130,7 +130,7 @@ var jaguar = require('jaguar/legacy');
 - [OneZip](https://github.com/coderaiser/node-onezip "OneZip") - Pack and extract zip archives with emitter.
 - [Tar-to-zip](https://github.com/coderaiser/node-tar-to-zip "tar-to-zip") - Convert tar and tar.gz archives to zip.
 - [Copymitter](https://github.com/coderaiser/node-copymitter "Copymitter") - Copy files with emitter.
-- [Remy](https://github.com/coderaiser/node-remy "Remy") - Remove files with emitter. 
+- [Remy](https://github.com/coderaiser/node-remy "Remy") - Remove files with emitter.
 
 ## License
 
