@@ -72,3 +72,23 @@ test('jaguar: extract: gz: invalid tar header', (t) => {
     });
 });
 
+test('jaguar: extract: tar', (t) => {
+    const to = mkdtempSync(tmpdir() + sep);
+    const fixture = join(__dirname, 'fixture');
+    const from = join(fixture, 'jaguar.tar');
+    const extracter = extract(from, to);
+    
+    extracter.on('end', () => {
+        const pathUnpacked = join(to, 'jaguar.txt');
+        const pathFixture= join(fixture, 'jaguar.txt');
+        
+        const fileUnpacked = readFileSync(pathUnpacked);
+        const fileFixture = readFileSync(pathFixture);
+        
+        unlinkSync(pathUnpacked);
+        rmdirSync(to);
+        
+        t.deepEqual(fileFixture, fileUnpacked, 'should extract file');
+        t.end();
+    });
+});
