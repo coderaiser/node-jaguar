@@ -72,6 +72,20 @@ test('jaguar: extract: gz: invalid tar header', (t) => {
     });
 });
 
+test('jaguar: extract: empty: error', (t) => {
+    const to = mkdtempSync(tmpdir() + sep);
+    const fixture = join(__dirname, 'fixture');
+    const from = join(fixture, 'empty.tar.gz');
+    const extracter = extract(from, to);
+    
+    extracter.on('error', (e) => {
+        const msg = 'No entries found';
+        t.equal(e.message, msg, 'should emit error');
+        t.end();
+        rmdirSync(to);
+    });
+});
+
 test('jaguar: extract: tar', (t) => {
     const to = mkdtempSync(tmpdir() + sep);
     const fixture = join(__dirname, 'fixture');
