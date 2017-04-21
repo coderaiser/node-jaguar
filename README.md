@@ -126,6 +126,7 @@ var jaguar = require('jaguar/legacy');
 ```
 ## Related
 
+- [Bizzy](https://github.com/coderaiser/node-bizzy "Bizzy") - Pack and extract .tar.bz2 archives with emitter.
 - [Jag](https://github.com/coderaiser/node-jag "Jag") - Pack files and folders with tar and gzip.
 - [OneZip](https://github.com/coderaiser/node-onezip "OneZip") - Pack and extract zip archives with emitter.
 - [Tar-to-zip](https://github.com/coderaiser/node-tar-to-zip "tar-to-zip") - Convert tar and tar.gz archives to zip.
