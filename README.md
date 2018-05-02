@@ -117,13 +117,6 @@ In case of starting example output should be similar to:
 done
 ```
 
-## Environments
-
-In old `node.js` environments that not fully supports `es2015`, `jaguar` could be used with:
-
-```js
-var jaguar = require('jaguar/legacy');
-```
 ## Related
 
 - [Bizzy](https://github.com/coderaiser/node-bizzy "Bizzy") - Pack and extract .tar.bz2 archives with emitter.
