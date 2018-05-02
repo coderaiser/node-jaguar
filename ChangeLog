@@ -1,3 +1,15 @@
+2018.05.02, v4.0.0
+
+feature:
+- (package) pipe-io v3.0.0
+- (package) eslint-plugin-node
+- (jaguar) drop support of node < 4
+- (package) redrun v6.0.0
+- (package) coveralls v3.0.0
+- (package) nyc v11.0.2
+- (package) eslint v4.0.0
+
+
 2017.01.26, v3.1.1
 
 fix:
