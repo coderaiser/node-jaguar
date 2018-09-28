@@ -1,6 +1,6 @@
 {
   "name": "jaguar",
-  "version": "4.0.1",
+  "version": "5.0.0",
   "description": "pack and extract .tar.gz archives with emitter",
   "main": "lib/jaguar.js",
   "bin": {
