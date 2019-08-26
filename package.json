@@ -27,15 +27,14 @@
     "supertape": "^1.2.3"
   },
   "scripts": {
-    "lint:eslint": "eslint lib",
-    "lint:eslint-bin": "eslint -c .eslintrc.bin bin",
-    "lint": "redrun lint:*",
-    "test": "tape 'test/**/*.js'",
-    "coverage": "nyc npm test",
-    "report": "nyc report --reporter=text-lcov | coveralls",
-    "watcher": "nodemon -w test -w lib --exec",
-    "watch:test": "npm run watcher -- npm test",
-    "watch:coverage": "npm run watcher -- npm run coverage"
+    "lint": "madrun lint",
+    "fix:lint": "madrun fix:lint",
+    "test": "madrun test",
+    "coverage": "madrun coverage",
+    "report": "madrun report",
+    "watcher": "madrun watcher",
+    "watch:test": "madrun watch:test",
+    "watch:coverage": "madrun watch:coverage"
   },
   "engines": {
     "node": ">=8.0.0"

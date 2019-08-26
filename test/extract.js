@@ -1,20 +1,19 @@
 'use strict';
 
-const {EventEmitter} = require('events');
 const {tmpdir} = require('os');
 const {
     sep,
-    join
+    join,
 } = require('path');
 const {
     readFileSync,
     unlinkSync,
     rmdirSync,
-    mkdtempSync
+    mkdtempSync,
 } = require('fs');
 
-const test = require('tape');
-const {extract}= require('..');
+const test = require('supertape');
+const {extract} = require('..');
 
 test('jaguar: extract: no args', (t) => {
     t.throws(extract, /from should be a string!/, 'should throw when no args');
@@ -32,7 +31,7 @@ test('jaguar: extract: error: file not found', (t) => {
     const extracter = extract('hello.tar.gz', 'hello');
     
     extracter.on('error', (e) => {
-        t.equal(e.message,  expect, 'should emit error when file not found');
+        t.equal(e.message, expect, 'should emit error when file not found');
         t.end();
     });
 });
@@ -45,7 +44,7 @@ test('jaguar: extract', (t) => {
     
     extracter.on('end', () => {
         const pathUnpacked = join(to, 'jaguar.txt');
-        const pathFixture= join(fixture, 'jaguar.txt');
+        const pathFixture = join(fixture, 'jaguar.txt');
         
         const fileUnpacked = readFileSync(pathUnpacked);
         const fileFixture = readFileSync(pathFixture);
@@ -94,7 +93,7 @@ test('jaguar: extract: tar', (t) => {
     
     extracter.on('end', () => {
         const pathUnpacked = join(to, 'jaguar.txt');
-        const pathFixture= join(fixture, 'jaguar.txt');
+        const pathFixture = join(fixture, 'jaguar.txt');
         
         const fileUnpacked = readFileSync(pathUnpacked);
         const fileFixture = readFileSync(pathFixture);

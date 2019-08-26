@@ -1,6 +1,5 @@
 'use strict';
 
-const {EventEmitter} = require('events');
 const {tmpdir} = require('os');
 const {join} = require('path');
 
@@ -9,11 +8,11 @@ const fs = require('fs');
 const {
     readFileSync,
     unlinkSync,
-    existsSync
+    existsSync,
 } = fs;
 
-const test = require('tape');
-const {pack}= require('..');
+const test = require('supertape');
+const {pack} = require('..');
 
 test('jaguar: pack: no args', (t) => {
     t.throws(pack, /from should be a string!/, 'should throw when no args');
@@ -45,11 +44,11 @@ test('jaguar: pack: error: empty file list', (t) => {
 test('jaguar: pack: error: read', (t) => {
     const expect = 'ENOENT: no such file or directory, lstat \'hello/world\'';
     const packer = pack('hello', 'hello.tar.gz', [
-        'world'
+        'world',
     ]);
     
     packer.on('error', (e) => {
-        t.equal(e.message,  expect, 'should emit error when file not found');
+        t.equal(e.message, expect, 'should emit error when file not found');
         t.end();
     });
     
@@ -62,11 +61,11 @@ test('jaguar: pack: error: write', (t) => {
     const expect = 'EACCES: permission denied, open \'/hello.tar.gz\'';
     const from = join(__dirname, 'fixture');
     const packer = pack(from, '/hello.tar.gz', [
-        'jaguar.txt'
+        'jaguar.txt',
     ]);
     
     packer.on('error', (e) => {
-        t.equal(e.message,  expect, 'should emit error when file not found');
+        t.equal(e.message, expect, 'should emit error when file not found');
         t.end();
     });
 });
@@ -75,11 +74,10 @@ test('jaguar: pack', (t) => {
     const to = join(tmpdir(), `${Math.random()}.tar.gz`);
     const fixture = join(__dirname, 'fixture');
     const packer = pack(fixture, to, [
-        'jaguar.txt'
+        'jaguar.txt',
     ]);
     
     packer.on('end', () => {
-        const from = join(fixture, 'jaguar.txt.tar.gz');
         const fileTo = readFileSync(to);
         
         unlinkSync(to);
@@ -92,7 +90,7 @@ test('jaguar: pack: abort', (t) => {
     const to = join(tmpdir(), `${Math.random()}.tar.gz`);
     const fixture = join(__dirname, 'fixture');
     const packer = pack(fixture, to, [
-        'jaguar.txt'
+        'jaguar.txt',
     ]);
     
     packer.abort();
@@ -107,7 +105,7 @@ test('jaguar: pack: abort', (t) => {
     const to = join(tmpdir(), `${Math.random()}.tar.gz`);
     const fixture = join(__dirname, 'fixture');
     const packer = pack(fixture, to, [
-        'jaguar.txt'
+        'jaguar.txt',
     ]);
     
     packer.abort();
@@ -122,7 +120,7 @@ test('jaguar: pack: abort: fast', (t) => {
     const to = join(tmpdir(), `${Math.random()}.tar.gz`);
     const fixture = join(__dirname, 'fixture');
     const packer = pack(fixture, to, [
-        'jaguar.txt'
+        'jaguar.txt',
     ]);
     
     packer.abort();
@@ -137,10 +135,10 @@ test('jaguar: pack: abort: unlink', (t) => {
     const to = join(tmpdir(), `${Math.random()}.tar.gz`);
     const dir = join(__dirname, 'fixture');
     const packer = pack(dir, to, [
-        'jaguar.txt'
+        'jaguar.txt',
     ]);
     
-    const unlink = fs.unlink;
+    const {unlink} = fs;
     
     fs.unlink = (name, fn) => {
         fn();
@@ -161,10 +159,10 @@ test('jaguar: pack: unlink', (t) => {
     const to = join(tmpdir(), `${Math.random()}.tar.gz`);
     const dir = join(__dirname, 'fixture');
     const packer = pack(dir, to, [
-        'jaguar.txt'
+        'jaguar.txt',
     ]);
     
-    const unlink = fs.unlink;
+    const {unlink} = fs;
     
     fs.unlink = (name, fn) => {
         fn();
@@ -183,14 +181,14 @@ test('jaguar: pack: unlink: error', (t) => {
     const to = join(tmpdir(), `${Math.random()}.tar.gz`);
     const dir = join(__dirname, '..');
     const packer = pack(dir, to, [
-        '.git'
+        '.git',
     ]);
     
-    const unlink = fs.unlink;
+    const {unlink} = fs;
     
     fs.unlink = (name, fn) => {
         fn(Error('Can not remove'));
-    }
+    };
     
     packer.on('error', (e) => {
         fs.unlink = unlink;

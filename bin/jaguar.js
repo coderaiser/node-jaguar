@@ -5,7 +5,7 @@
 const jaguar = require('..');
 const path = require('path');
 const glob = require('glob');
-const argv = process.argv;
+const {argv} = process;
 
 const args = require('minimist')(argv.slice(2), {
     string: [
@@ -16,17 +16,15 @@ const args = require('minimist')(argv.slice(2), {
         v: 'version',
         h: 'help',
         p: 'pack',
-        x: 'extract'
+        x: 'extract',
     },
     unknown: (cmd) => {
-        const name = info().name;
+        const {name} = info();
         
-        console.error(
-            `'%s' is not a ${name} option. See '${name} --help'.`, cmd
-        );
+        console.error(`'%s' is not a ${name} option. See '${name} --help'.`, cmd);
         
         process.exit(-1);
-    }
+    },
 });
 
 if (args.version)
@@ -34,11 +32,11 @@ if (args.version)
 else if (args.help)
     help();
 else if (args.pack)
-    getName(args.pack, name => {
+    getName(args.pack, (name) => {
         main('pack', name);
     });
 else if (args.extract)
-    getName(args.extract, name => {
+    getName(args.extract, (name) => {
         main('extract', name);
     });
 else
@@ -47,11 +45,11 @@ else
 function main(operation, file) {
     const packer = getPacker(operation, file);
     
-    packer.on('error', error => {
+    packer.on('error', (error) => {
         console.error(error.message);
     });
     
-    packer.on('progress', percent => {
+    packer.on('progress', (percent) => {
         process.stdout.write(`\r${percent}%`);
     });
     
@@ -69,7 +67,7 @@ function getPacker(operation, file) {
     const to = path.join(cwd, `${file}.tar.gz`);
     
     return jaguar.pack(cwd, to, [
-        file
+        file,
     ]);
 }
 
@@ -99,9 +97,9 @@ function help() {
     console.log(usage);
     console.log('Options:');
     
-    Object.keys(bin).forEach(name => {
+    for (const name of Object.keys(bin)) {
         const line = `  ${name} ${bin[name]}`;
         console.log(line);
-    });
+    }
 }
 
