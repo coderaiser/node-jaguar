@@ -18,7 +18,7 @@
   "devDependencies": {
     "coveralls": "^3.0.0",
     "eslint": "^6.2.2",
-    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-node": "^9.1.0",
     "nodemon": "^1.11.0",
     "nyc": "^13.0.1",
     "redrun": "^7.0.0",
