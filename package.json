@@ -54,5 +54,8 @@
   "bugs": {
     "url": "https://github.com/coderaiser/node-jaguar/issues"
   },
-  "homepage": "https://github.com/coderaiser/node-jaguar"
+  "homepage": "https://github.com/coderaiser/node-jaguar",
+  "publishConfig": {
+    "access": "public"
+  }
 }
