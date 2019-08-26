@@ -13,7 +13,7 @@
     "minimist": "^1.2.0",
     "pipe-io": "^3.0.0",
     "tar-fs": "^2.0.0",
-    "tar-stream": "^1.5.1"
+    "tar-stream": "^2.1.0"
   },
   "devDependencies": {
     "coveralls": "^3.0.0",
