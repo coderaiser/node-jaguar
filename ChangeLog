@@ -1,3 +1,12 @@
+2019.12.19, v6.0.0
+
+feature:
+- (jaguar) drop support of node < 10
+- (package) madrun v5.0.1
+- (package) eslint-plugin-putout v3.0.0
+- (package) nodemon v2.0.2
+
+
 2019.10.16, v5.0.3
 
 feature:
