@@ -2,8 +2,9 @@
 
 const {tmpdir} = require('os');
 const {join} = require('path');
-
 const fs = require('fs');
+
+const {reRequire} = require('mock-require');
 
 const {
     readFileSync,
@@ -138,64 +139,65 @@ test('jaguar: pack: abort: unlink', (t) => {
         'jaguar.txt',
     ]);
     
-    const {unlink} = fs;
+    const {unlink} = fs.promises;
     
-    fs.unlink = (name, fn) => {
-        fn();
-    };
+    fs.promises.unlink = async () => {};
     
     packer.on('start', () => {
         packer.abort();
     });
     
     packer.on('end', () => {
-        fs.unlink = unlink;
+        fs.promises.unlink = unlink;
         t.pass('should emit end');
         t.end();
     });
 });
 
-test('jaguar: pack: unlink', (t) => {
+test('jaguar: pack: unlink', async (t) => {
     const to = join(tmpdir(), `${Math.random()}.tar.gz`);
     const dir = join(__dirname, 'fixture');
+    
+    const {unlink} = fs.promises;
+    
+    fs.promises.unlink = async () => {};
+    
+    const {pack} = reRequire('..');
     const packer = pack(dir, to, [
         'jaguar.txt',
     ]);
     
-    const {unlink} = fs;
-    
-    fs.unlink = (name, fn) => {
-        fn();
-    };
-    
     packer.once('end', () => {
-        fs.unlink = unlink;
+        fs.promises.unlink = unlink;
         t.pass('should emit end');
         t.end();
     });
     
-    packer._unlink(to);
+    await packer._unlink(to);
 });
 
-test('jaguar: pack: unlink: error', (t) => {
+test('jaguar: pack: unlink: error', async (t) => {
     const to = join(tmpdir(), `${Math.random()}.tar.gz`);
     const dir = join(__dirname, '..');
+    
+    const {unlink} = fs.promises;
+    
+    fs.promises.unlink = async () => {
+        throw Error('Can not remove');
+    };
+    
+    const {pack} = reRequire('..');
     const packer = pack(dir, to, [
         '.git',
     ]);
     
-    const {unlink} = fs;
-    
-    fs.unlink = (name, fn) => {
-        fn(Error('Can not remove'));
-    };
-    
     packer.on('error', (e) => {
-        fs.unlink = unlink;
+        fs.promises.unlink = unlink;
+        
         t.ok(e.message, 'Can not remove', 'should emit error');
         t.end();
     });
     
-    packer._unlink(to);
+    await packer._unlink(to);
 });
 

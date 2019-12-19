@@ -2,6 +2,12 @@
 
 const {run} = require('madrun');
 
+const {
+    NODE_OPTIONS = '',
+} = process.env;
+
+process.env.NODE_OPTIONS = `${NODE_OPTIONS} --unhandled-rejections=strict`;
+
 module.exports = {
     'lint': () => 'putout bin lib test madrun.js',
     'fix:lint': () => run('lint', '--fix'),
