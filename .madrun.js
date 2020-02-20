@@ -9,7 +9,7 @@ const {
 process.env.NODE_OPTIONS = `${NODE_OPTIONS} --unhandled-rejections=strict`;
 
 module.exports = {
-    'lint': () => 'putout bin lib test madrun.js',
+    'lint': () => 'putout bin lib test .madrun.js',
     'fix:lint': () => run('lint', '--fix'),
     'test': () => 'tape \'test/**/*.js\'',
     'coverage': () => 'nyc npm test',
